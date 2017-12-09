@@ -4,8 +4,7 @@
 项目未完成，目前仅完成登录部分
 
 
-# License
-MIT License
+## MIT License
 
 Copyright (c) 2017 ltaoj
 
