@@ -4,8 +4,8 @@ import sys
 from urllib.request import urlretrieve
 from selenium import webdriver
 
-from .contants import CONFIG
-from .zips import UnzipFactory
+from contants import CONFIG
+from zips import UnzipFactory
 
 # find driver path
 def find_driver(name, path='..'):

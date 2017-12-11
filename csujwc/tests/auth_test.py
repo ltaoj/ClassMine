@@ -1,5 +1,6 @@
-from csujwc.login import Context
-from csujwc.login import CodeLogin
+import common
+from login import Context
+from login import CodeLogin
 
 def test_login():
     username = '3903150326'
