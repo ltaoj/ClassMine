@@ -1,3 +1,5 @@
+## **Developing... Please Star it!**
+
 |**`Linux`**|
 |-----------|
 |[![Build Status](https://www.travis-ci.org/ltaoj/ClassMine.svg?branch=master) ](https://www.travis-ci.org/ltaoj/ClassMine)|
