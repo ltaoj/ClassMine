@@ -1,3 +1,5 @@
+.. image:: https://www.travis-ci.org/ltaoj/ClassMine.svg?branch=master
+	:target: https://www.travis-ci.org/ltaoj/ClassMine
 # csujwc
 基于Python实现的中南大学教务管理系统抢课软件
 
