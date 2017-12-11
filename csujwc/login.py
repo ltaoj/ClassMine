@@ -16,7 +16,9 @@ def find_driver(name, path='..'):
         if os.path.isfile(cur_dir) and name == filename:
             return cur_dir
         if os.path.isdir(cur_dir):
-            return find_driver(name, cur_dir)
+            result = find_driver(name, cur_dir)
+            if result != '':
+                return result
     print('not found %s' % name)
     return ""
 
