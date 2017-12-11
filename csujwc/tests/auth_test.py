@@ -10,4 +10,5 @@ def test_login():
     password = '123456'
     login = CodeLogin()
     ctx = Context(login)
+    print(type(ctx))
     ctx.login(username, password)
