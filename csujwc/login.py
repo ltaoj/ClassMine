@@ -11,7 +11,6 @@ from zips import UnzipFactory
 def find_driver(name, path='..'):
     print('searching file %s from %s' % (name, path))
     for filename in os.listdir(path):
-        print(filename)
         cur_dir = os.path.join(path, filename)
         if os.path.isfile(cur_dir) and name == filename:
             return cur_dir

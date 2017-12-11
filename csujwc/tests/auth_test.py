@@ -6,9 +6,8 @@ from login import Context
 from login import CodeLogin
 
 def test_login():
-    username = '3903150326'
+    username = '123456'
     password = '123456'
     login = CodeLogin()
     ctx = Context(login)
-    print(type(ctx))
     ctx.login(username, password)
