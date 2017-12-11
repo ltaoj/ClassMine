@@ -4,8 +4,8 @@ import sys
 from urllib.request import urlretrieve
 from selenium import webdriver
 
-from contants import CONFIG
-from zips import UnzipFactory
+from .contants import CONFIG
+from .zips import UnzipFactory
 
 # find driver path
 def find_driver(name, path='..'):
@@ -95,11 +95,3 @@ class Context(object):
 
     def login(self, username, password):
         return self.__login.login(username, password)
-
-
-if __name__ == '__main__':
-    username = '3903150326'
-    password = '123456'
-    login = CodeLogin()
-    ctx = Context(login)
-    ctx.login(username, password)

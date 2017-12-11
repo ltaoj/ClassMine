@@ -1,7 +1,7 @@
 import tarfile
 import bz2
 
-from contants import ZIP
+from .contants import ZIP
 # unzip factory
 class UnzipFactory(object):
 
