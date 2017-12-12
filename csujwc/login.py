@@ -91,7 +91,7 @@ class CodeLogin(Login):
     def login(self, username, password):
         driver = load_driver()
         driver.get(URL.LOGIN_PAGE_WITHCODE)
-        code_path = get_code_image(driver)
+        code_path = self.get_code_image(driver)
         code_result = ''
         if CONFIG.USE_OCR:
             print('use OCR function recognizing, please wait...')
