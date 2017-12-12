@@ -3,8 +3,12 @@ import sys
 
 from urllib.request import urlretrieve
 from selenium import webdriver
+from PIL import Image
+import re
+import time
 
 from contants import CONFIG
+from contants import URL
 from zips import UnzipFactory
 
 # find driver path
@@ -81,8 +85,64 @@ class Login(object):
 # login with verify code
 class CodeLogin(Login):
     
+    # the way of code login
+    # if login success will enter the system
+    # return the driver from operations after
     def login(self, username, password):
-        load_driver()
+        driver = load_driver()
+        driver.get(URL.LOGIN_PAGE_WITHCODE)
+        code_path = get_code_image(driver)
+        code_result = ''
+        if CONFIG.USE_OCR:
+            print('use OCR function recognizing, please wait...')
+            code_result = recognize_with_ocr(code_path)
+            print('OCR recognized result is:%s' % code_result)
+        else:
+            print('don\'t use OCR function, please check the code image at %s' % code_path)
+            code_result = input('type in the code you recognized:')
+            print('ok, your input is %s' % code_result)
+        driver.find_element_by_id(CONFIG.CODE_INPUT_ID).send_keys(code_result)
+        driver.find_element_by_id(CONFIG.SUBMIT_BTN_ID).click()
+
+        # wait from redirect page
+        time.sleep(3)
+        print(driver.page_source)
+        print('login successfully')
+        return driver
+
+    # screenshot the web page and crop the code image area
+    # and save the code image
+    # will return the code image path
+    def get_code_image(driver):
+        print('screenshot the web page...')
+        driver.save_screenshot(CONFIG.SCREENSHOT_NAME)
+        print('screenshot completed')
+        elem = driver.find_element_by_id(CONFIG.CODE_IMAGE_ID)
+        left = elem.location['x']
+        top = elem.location['y']
+        right = elem.location['x'] + elem.size['width']
+        bottom = elem.location['y'] + elem.size['height']
+        print('crop screenshot...')
+        im = Image.open(CONFIG.SCREENSHOT_NAME)
+        im = im.crop((left, top, right, bottom))
+        code_path = os.path.join(os.getcwd() , CONFIG.CODE_IMAGE_NAME)
+        im.save(code_path)
+        print('saved code image named %s at %s' % (CONFIG_IMAGE_NAME, os.getcwd()))
+        os.remove(CONFIG.SCREENSHOT_NAME)
+        print('removed %s' % CONFIG.SCREENSHOT_NAME)
+        return code_path
+
+
+    # use ocr lib recognized the code image
+    # return the text result
+    def recognize_with_ocr(code_path):
+        p = subprocess.Popen(['tesseract', code_path, CONFIG.CODE_RECOGNIZED_FILE_NAME],
+                stdout.subprocess.PIPE, stderr=subprocess.PIPE)
+        p.wait()
+        f = open(CONFIG.CODE_RECOGNIZED_FILE_NAME + '.txt', 'r')
+        result = f.read()
+        result = re.sub('(\n|\t|\r| )', '', result)
+        return result
 
 # login without verify code
 class NormalLogin(Login):
