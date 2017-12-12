@@ -6,6 +6,7 @@ from selenium import webdriver
 from PIL import Image
 import re
 import time
+import subprocess
 
 from contants import CONFIG
 from contants import URL
