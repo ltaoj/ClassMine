@@ -137,8 +137,8 @@ class CodeLogin(Login):
     # use ocr lib recognized the code image
     # return the text result
     def recognize_with_ocr(self, code_path):
-        p = subprocess.Popen(['tesseract', code_path, CONFIG.CODE_RECOGNIZED_FILE_NAME],
-                stdout.subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen(["tesseract", code_path, CONFIG.CODE_RECOGNIZED_FILE_NAME], 
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         p.wait()
         f = open(CONFIG.CODE_RECOGNIZED_FILE_NAME + '.txt', 'r')
         result = f.read()
