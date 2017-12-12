@@ -127,7 +127,7 @@ class CodeLogin(Login):
         im = im.crop((left, top, right, bottom))
         code_path = os.path.join(os.getcwd() , CONFIG.CODE_IMAGE_NAME)
         im.save(code_path)
-        print('saved code image named %s at %s' % (CONFIG.CODE.IMAGE_NAME, os.getcwd()))
+        print('saved code image named %s at %s' % (CONFIG.CODE_IMAGE_NAME, os.getcwd()))
         os.remove(CONFIG.SCREENSHOT_NAME)
         print('removed %s' % CONFIG.SCREENSHOT_NAME)
         return code_path
