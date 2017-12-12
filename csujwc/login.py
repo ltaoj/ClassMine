@@ -95,7 +95,7 @@ class CodeLogin(Login):
         code_result = ''
         if CONFIG.USE_OCR:
             print('use OCR function recognizing, please wait...')
-            code_result = recognize_with_ocr(code_path)
+            code_result = self.recognize_with_ocr(code_path)
             print('OCR recognized result is:%s' % code_result)
         else:
             print('don\'t use OCR function, please check the code image at %s' % code_path)
@@ -113,7 +113,7 @@ class CodeLogin(Login):
     # screenshot the web page and crop the code image area
     # and save the code image
     # will return the code image path
-    def get_code_image(driver):
+    def get_code_image(self, driver):
         print('screenshot the web page...')
         driver.save_screenshot(CONFIG.SCREENSHOT_NAME)
         print('screenshot completed')
@@ -135,7 +135,7 @@ class CodeLogin(Login):
 
     # use ocr lib recognized the code image
     # return the text result
-    def recognize_with_ocr(code_path):
+    def recognize_with_ocr(self, code_path):
         p = subprocess.Popen(['tesseract', code_path, CONFIG.CODE_RECOGNIZED_FILE_NAME],
                 stdout.subprocess.PIPE, stderr=subprocess.PIPE)
         p.wait()
