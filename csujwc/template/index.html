@@ -1,0 +1,30 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>get encoded</title>
+		<meta charset="UTF-8"/>
+		<script src="./conwork.js"></script>
+	</head>
+	<body>
+		<div>
+			<input id="username" type="text" />
+			<input id="password" type="password" />
+			<button id="submit" onclick="submit()" >submit</button>
+			<input id="encoded" type="text" />
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		function submit() {
+			var xh = document.getElementById("username").value;
+			var pwd = document.getElementById("password").value;
+			var encoded = ""
+			if (xh == "" || pwd == "")
+				return;
+			var account = encodeInp(xh);
+			var passwd = encodeInp(pwd);
+			var encoded = account + "%%%" + passwd;
+			document.getElementById("encoded").value = encoded;
+		}
+	</script>
+</html>
