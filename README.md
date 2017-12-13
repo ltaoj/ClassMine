@@ -9,10 +9,23 @@ Educational administration system.It's implemented based on Python.This program 
 
 **If you want to contribute to ClassMine, be sure to fork it first and then I will accept the pull request.**
 
+## Requirements
+- OCR Library -- the following:
+	- Tesseract
+- Python -- the following:
+	- CPython == 3.5
+	- Pytest
+
+*Make sure to type in the commands below for dependency*
+```
+sudo apt-get install tesseract-ocr
+pip install -r requirements
+```
+
 ## Installation
 *Make sure that your computer has installed Python 3.5. Then type the commands below.*
 ```
-git lone https://github.com/ltaoj/ClassMine.git
+git clone https://github.com/ltaoj/ClassMine.git
 cd ClassMine
 python setup.py install
 ```
