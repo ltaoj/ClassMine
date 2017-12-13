@@ -4,6 +4,8 @@ import sys
 from urllib.request import urlretrieve
 from selenium import webdriver
 from PIL import Image
+import requests
+
 import re
 import time
 import subprocess
@@ -149,7 +151,21 @@ class CodeLogin(Login):
 class NormalLogin(Login):
     
     def login(self, username, password):
-        pass
+        driver = load_driver()
+        RESOURCE = "file://" + os.path.join(os.getcwd(), CONFIG.ENCODED_HTML_PATH)
+        print('open html file %s in memory...' % RESOURCE)
+        driver.get(RESOURCE)
+        print('send username and passwd...')
+        driver.find_element_by_id('username').send_keys(username)
+        driver.find_element_by_id('password').send_keys(password)
+        driver.find_element_by_id('submit').click()
+        time.sleep(.5)
+        encoded = driver.find_element_by_id('encoded').get_attribute('value')
+        print('encoded is %s' % encoded)
+        params = {'encoded': encoded}
+        r = requests.post(URL.LOGIN_API_NORMAL, data=params)
+        print(r.text)
+        print('login successfully')
 
 class Context(object):
     
