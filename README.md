@@ -1,4 +1,4 @@
-## **Developing... Please Star it!**
+## **Developing...**
 
 |**`Linux`**|**`License`**|
 |-----------|-------------|
